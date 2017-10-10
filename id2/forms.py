@@ -6,8 +6,8 @@ from id2.models import Service
 
 class InscriptionForm(forms.Form):
     """
-    Ce formulaire s'occupe des inscriptions dans le système.
-    Et donc pour toutes les personnes pas encore identifiées
+    Ce formulaire s'occupe des inscriptions dans le systï¿½me.
+    Et donc pour toutes les personnes pas encore identifiï¿½es
     """
     SEXE = (('H',u'homme'),('F',u'femme'),)
 
@@ -24,14 +24,16 @@ class InscriptionForm(forms.Form):
     typePiece = forms.ChoiceField(label='Type de piece',choices=PIECE)
     code = forms.CharField(max_length=60,
             help_text=u"Numero ou identifiant de la piece.")
-    date_expiration=forms.DateField(label=u"Date d'expiration",
-            required=False,
-            help_text="Format<br>DD/MM/YYYY",
-            )
-    email = forms.EmailField(label=u"Adresse electronique",
-            required=False)
-    telephone = forms.IntegerField(help_text=u"Num de telephone",\
-            required=False)
+    date_expiration=forms.DateField(
+                required=False,
+                help_text="Format: DD/MM/YYYY",
+    )
+    email = forms.EmailField(
+            required=False
+    )
+    telephone = forms.IntegerField(
+            required=False
+    )
 
 class VisiteForm(forms.Form):
     """
@@ -52,7 +54,7 @@ class AbonnementForm(forms.Form):
     nom = forms.CharField()
     prenom = forms.CharField()
     matricule = forms.CharField(max_length=60,
-            #FIXME : pourquoi avec les accents ça génère une erreur ?
+            #FIXME : pourquoi avec les accents ï¿½a gï¿½nï¿½re une erreur ?
             #(unicode error) 'utf8' codec can't decode byte 0xe9 ...
             help_text=u"Code genere suivants les regles du service")
     photo = forms.ImageField(required=False)

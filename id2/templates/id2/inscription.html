@@ -2,25 +2,30 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
+        {% if error_message %}<p class="w3-center"><strong>{{ error_message }}</strong></p>{% endif %}
+        <h3 class="w3-center"> Formulaire d'inscription de nouveaux usagers</h3>
+        {% comment %}Dernière inscription : {{nom}} <br />{% endcomment %}
+        <p class="w3-center"><strong> {% if nom %} Dernière inscription: {% endif %} {{ message }}</strong></p> <br>
 
- {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<h3> Formulaire d'inscription de nouveaux usagers</h3>
-Dernière inscription : {{nom}} <br />
-<p><strong> {{ message }}</strong></p> <br />
-<form action="{% url 'inscriptionTraitement' %}" method="post">
+        <form action="{% url 'inscriptionTraitement' %}" method="post" class="w3-center form_inscription w3-card-2"
+              style="
+                width: 30%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;">
 
-  <table>
-  {%  csrf_token %}
-   {{ form.as_table }}
+            <table>
+                {%  csrf_token %} {{ form.as_table }}
+            </table>
 
-   <tr>
-     <td></td>
-     <td><input type="submit" value="Ajouter" /></td>
-   </tr>
-  </table>
-</form>
-{% else %}
-<p>Il faut disposer d'un compte pour effectuer ces traitements</p>
-{% endif %}
+            <input type="submit" value="Ajouter" class="w3-btn w3-blue" style="margin-top: 10px"/></td>
+        </form><br><br><br><br><br>
+
+    {% else %}
+        <div class="alert-info w3-container w3-pale-red w3-leftbar w3-border-red">
+            <p>Il faut disposer d'un compte pour effectuer ces traitements</p>
+        </div>
+    {% endif %}
 {% endblock %}
+

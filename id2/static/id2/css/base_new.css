@@ -1,0 +1,92 @@
+nav li {
+    list-style-type: none;
+    /*display: inline-block;*/
+    float: left;
+}
+
+nav li a {
+    display: block;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+nav li a:hover {
+    background-color: #a8002c;
+    color: white;
+}
+
+/*
+nav li:nth-child(4) a{
+    background-color: #a8002c;
+    color: white;
+}
+*/
+
+header .w3-top{
+    margin-top: 0px;
+
+    border-bottom: 3px solid #a8002c;
+}
+
+header {
+    margin-bottom: 5em;
+}
+
+header nav li:nth-child(1) {
+    padding-right: 0px;
+    margin-right: -300px;
+}
+
+.w3-btn-maroon {
+    background-color: #a8002c;
+    color: white;
+}
+
+table.results-home {
+    width: 75%;
+    margin: auto;
+}
+
+ table th {
+    background-color: #a8002c;
+    color: white;
+}
+
+.admin-panel span a {
+     text-decoration: none;
+ }
+
+.alert-info a {
+    text-decoration: none;
+    font-weight: bold;
+ }
+
+#piedDePage {
+    border-top: 3px solid #a8002c;
+    margin-top: 5%;
+    box-shadow: black 0px -1px 12px;
+    height: 50px;
+    background-color: white;
+}
+
+#piedDePage p {
+    padding-bottom: 10px;
+}
+
+#piedDePage p a {
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.form_inscription {
+    width: 25%;
+    margin: auto;
+    border: 1px solid black;
+}
+
+.form_inscription table td{
+}
+
+.form_inscription input {
+    background-color: #a8002c;
+}
+

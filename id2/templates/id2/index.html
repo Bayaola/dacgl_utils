@@ -2,19 +2,28 @@
 
 {% block content %}
 
- <h2>Sommaire</h2>
- <ul>
+{% comment %} <h2>Sommaire</h2>
+ <ul class="w3-sidenav w3-light-grey">
 	 <li><a href="#lastvisit">Les dernières visites</a></li>
 	 <li><a href="#lastsubscribed">Les dernières inscriptions</a></li>
 	 <li><a href="#récap">Récapitulatif</a></li>
- </ul>
+ </ul>{% endcomment %}
 
+
+	 <h3 class="w3-center"> <a name="récap">Récapitulatif</a></h3>
+	 <table style="width: 25%" class="results-home w3-card-4 w3-table w3-bordered w3-striped w3-border w3-hoverable">
+		 <tr><td>Nombre d'usagers enregistrés</td><td> {{ usager }}</td></tr>
+                 <tr><td>Nombre de visite ce mois</td><td>{{ visitCeMois | length }}</td></tr>
+		 <tr><td>Nombre de visite cette semaine</td><td>{{ visitSemaine | length }}</td></tr>
+	 </table>
+    <br>
 	 {% if derniereVisite %}
-	 <h3> <a name="lastvisit">Les 20 dernières visites</a> </h3>
-	 <table>
+	 <h3 class="w3-center"> <a name="lastvisit">Les 20 dernières visites</a> </h3>
+	 <table class="results-home w3-card-4 w3-table w3-bordered w3-striped w3-border w3-hoverable">
 		 <tr><th>Nom</th><th>Lieu</th><th>Motif</th><th>Heure d'arrivée</th><th>Heure de départ</th></tr>
 		 {% for visite in derniereVisite %}
-		 <tr><td><a href="/ident/consigne/{{visite.id}}">{{ visite.usager }}</a></td>
+		 <tr>
+             <td><a href="/ident/consigne/{{visite.id}}">{{ visite.usager }}</a></td>
 			 <td>{{ visite.service }}</td>
 			 <td>{{ visite.type_visit }}</td>
 			 <td>{{ visite.date_arrivee }}</td>
@@ -27,19 +36,15 @@
  <br />
 
 	 {% if dernierInscrit %}
-	 <h3> <a name="lastsubscribed">Les 10 derniers usagers enregistrés</a> </h3>
-	 <table>
+	 <h3 class="w3-center"> <a name="lastsubscribed">Les 10 derniers usagers enregistrés</a> </h3>
+	 <table class="results-home w3-card-4 w3-table w3-bordered w3-striped w3-border w3-hoverable">
 		 <tr><th>Nom</th><th>Prénom</th></tr>
 		 {% for inscrit in dernierInscrit %}
 		 <tr><td>{{ inscrit.nom }}</td><td>{{ inscrit.prenom }}</td></tr>
 		 {% endfor %}
 	 </table>
 	 {% endif %}
-	 <h3> <a name="récap">Récapitulatif</a></h3>
-	 <table>
-		 <tr><td>Nombre d'usagers enregistrés</td><td> {{ usager }}</td></tr>
-                 <tr><td>Nombre de visite ce mois</td><td>{{ visitCeMois | length }}</td></tr>
-		 <tr><td>Nombre de visite cette semaine</td><td>{{ visitSemaine | length }}</td></tr>
-	 </table>
+    <br><br><br><br><br><br>
+
 
 {% endblock %}

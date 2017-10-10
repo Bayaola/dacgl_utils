@@ -1,9 +1,9 @@
 #-*- coding: utf-8 -*-
 
 from datetime import datetime
-
 from django.db import models
 from django.utils import timezone
+
 
 class Service(models.Model):
     nom_serv = models.CharField("Service", max_length=30)
