@@ -2,10 +2,16 @@
 
 {% block content %}
 <div align="center">
-<form action="{% url 'recherche-traitement' %}" method="get">
+<form action="{% url 'recherche-traitement' %}" method="get" class="w3-center form_inscription w3-card-2"
+              style="
+                width: 30%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;
+                margin-top: 5%">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Rechercher" />
+    <button class="w3-btn w3-btn-maroon" value="Rechercher" type="submit">Rechercher</button>
 </form>
 </div>
 {% endblock %}

@@ -3,19 +3,44 @@
 {% block content %}
 <div align="center">
 	<h3> Connexion à l'interface de gestion des visites</h3>
-	<table>
 		{% comment %}
   <form action="/ident/login/verification" method="post">
 		{% endcomment %}
-		<form action="{% url 'entreeVerification' %}" method="post">
+    <form action="{% url 'entreeVerification' %}" method="post" class="w3-center form_inscription w3-card-2"
+              style="
+                width: 30%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;
+                margin-top: 10%">
 	  {% csrf_token %}
-	  <tr><th><label for"id_identifiant">Identifiant:</label></th><td><input id="id_identifiant" maxlength="40" name="identifiant" type="text" /></td></tr>
-	  <tr><th><label for"id_password">Mot de passe:</label></th><td><input id="id_password" maxlength="90" name="password" type="password" /></td></tr>
-	  <tr><td></td>
-		  <td><input value="Connexion" type="submit" /></td>
+        <table>
+	        <tr>
+                <th>
+                    <label for="id_identifiant">Identifiant:</label>
+                </th>
+                <td>
+                    <input id="id_identifiant" maxlength="40" name="identifiant" type="text" />
+                </td>
+            </tr>
+	        <tr>
+                <th>
+                    <label for="id_password">Mot de passe:</label>
+                </th>
+                <td>
+                    <input id="id_password" maxlength="90" name="password" type="password" />
+                </td>
+            </tr>
+	        <tr>
+                <td>
+
+                </td>
+		    <td>
+                <input value="Connexion" type="submit" class="w3-btn w3-blue"/>
+            </td>
 	  </tr>
+        </table>
   </form>
-	</table> ;)
 </div>
 
 {% endblock %}

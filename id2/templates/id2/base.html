@@ -1,70 +1,104 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+
 <html>
 	<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>{% block title %} DRACGL - Gestion des visiteurs {% endblock %}</title>
-  <link rel="stylesheet"  type="text/css" href="{% static 'id2/css/base.css' %}">
-	</head>
+        <!-- {% comment %}<link rel="stylesheet"  type="text/css" href="{% static 'id2/css/base.css' %}">{% endcomment %}{% comment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'id2/css/w3.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'id2/css/base_new.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'id2/foundation/css/foundation.css' %}">{% endcomment %} -->
+        <link rel="stylesheet" type="text/css" href="{% static 'id2/css/w3.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'id2/css/base_new.css' %}">
 
-  <body>
-	  <div>
-	  <div id"menu0" float="left">
-	   <p>
-           <a href="/ident/">Accueil</a> |<a
-	      href="{% url 'inscription' %}"> Inscription</a> | 
-	     <a href="{% url 'recherche' %}">Recherche</a>
-	   </p><br />
-	   {% if user.is_staff %}
-	    {% if services %}
-	    <p>
-	    Les services:<br />
-	    {% for s in services %}
-	    <a href="/ident/service/{{s.id}}/">{{s.nom_serv}}</a> |
-	    {% endfor %}
-	    </p>
-	    {% endif %}
-	   {% endif %}
-	  </div>
-          <div id="side" align="right">
-                  {% block sidebar %}
 
-                  <ul>
-                          {% if not user.is_authenticated %}
-				  <p>Veuillez svp ouvrir <a href="/ident/login">une session</a></p>
-                          {% else %}
-				  Bienvenue {{ user.username }}
-				  <li><a href="/ident/">Accueil</li>
-                                  {% if user.is_staff %}
-					  <li><a href="/admin" target="_blank">Interface d'administration</li>
-					  <li><a href="/ident/recherche/">Formulaire recherche</li>
-					  <li><a href="/ident/inscription/">Formulaire d'inscription</li>
-                                  {% endif %}
-                          <li>
-				  <a href="/ident/logout">Se déconnecter</a> <br />
+    <body>
+
+        <header>
+
+            <nav>
+                <ul class="w3-top w3-navbar w3-card-2 w3-white w3-large">
+                    <li class="w3-left"><img src="{% static 'id2/img/logo_AUF_RVB.png' %}" alt="LOGO AUF" width="20%"></li>
+                    <li class="w3-left"><a href="/ident/">Accueil</a></li>
+                    <li class="w3-left"><a href="{% url 'inscription' %}"> Inscription</a></li>
+                    <li class="w3-right"><a href="{% url 'recherche' %}">Recherche</a></li>
+                    {% if not user.is_authenticated %}
+                        <li class="w3-right"><a href="/ident/login">Se connecter</a></li>
+                    {% else %}
+                        {% comment %}<li class="w3-right"><a href="/ident/logout">Se déconnecter</a></li>{% endcomment %}
+                    {% endif %}
+                </ul>
+            </nav>
+
+        </header>
+
+        <section class="w3-row">
+
+        </section>
+
+
+        <div>
+        {% comment %}<div id = "menu0">
+            <p>
+                <a href="/ident/">Accueil</a> | <a href="{% url 'inscription' %}"> Inscription</a> |
+                 <a href="{% url 'recherche' %}">Recherche</a>
+            </p><br />
+            {% if user.is_staff %}
+                {% if services %}
+                <p>
+                Les services:<br />
+                {% for s in services %}
+                <a href="/ident/service/{{s.id}}/">{{s.nom_serv}}</a> |
+                {% endfor %}
+                </p>
+                {% endif %}
+            {% endif %}
+        </div>{% endcomment %}
+
+
+            <div class="w3-center admin-panel">
+                {% block sidebar %}
+
+                        {% if not user.is_authenticated %}
+                            {% comment %}<div class="alert-info w3-container w3-pale-red w3-leftbar w3-border-red">
+                                <p>Veuillez svp ouvrir <a href="/ident/login">une session</a></p>
+                            </div>{% endcomment %}
+                        {% else %}
+                            <h3>Bienvenue <span style="font-size: 1em; font-weight: bold;">{{ user.username }}</span></h3>
+                            {% if user.is_staff %}
+                                <span class="w3-btn w3-white w3-border w3-border-blue"><a href="/admin" target="_blank">Interface d'administration</a></span>
+                                <span class="w3-btn w3-white w3-border w3-border-blue"><a href="/ident/recherche/">Formulaire recherche</a></span>
+                                <span class="w3-btn w3-white w3-border w3-border-blue"><a href="/ident/inscription/">Formulaire d'inscription</a></span>
                             {% endif %}
-                        </ul>
+                            <span class="w3-btn w3-white w3-border w3-border-red"><a href="/ident/logout">Se déconnecter</a></span>
+                            <br />
+                            {% endif %}
 
-		{% endblock %}
-                </div>
-	  </div>
+                {% endblock %}
+            </div>
 
-          <div id="content">
-                  {% block content %}{% endblock %}
-          </div>
-          {% block piedDePage %}
+        </div>
 
-	  <div align="center" id="piedDePage">
-	   <hr>
-	   <p>
-           <a href="/ident/">Accueil</a> |<a
-	      href="{% url 'inscription' %}"> Inscription</a> | 
-	     <a href="{% url 'recherche' %}">Effectuez une recherche</a>
-	   </p>
-	  </div>
-	 
-	  {% endblock %}
+
+        {% block content %}
+
+        {% endblock %}
+
+
+        {% block piedDePage %}
+
+        <div align="center" id="piedDePage" class="w3-large w3-bottom">
+        <p>
+            {% comment %}<a href="/ident/">Accueil</a> |
+            <a href="{% url 'inscription' %}"> Inscription</a> |
+            <a href="{% url 'recherche' %}">Effectuez une recherche</a>{% endcomment %}
+            DACGL - Utils | &copy; AUF 2017
+        </p>
+        </div>
+
+        {% endblock %}
   </body>
 
 </html>
